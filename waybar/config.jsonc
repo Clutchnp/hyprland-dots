@@ -22,32 +22,36 @@
   "gtk-layer-shell": true,
   "height": 40,
   "modules-left": ["custom/launch_wofi", "hyprland/workspaces", "tray"],
-  "modules-center":["hyprland/window"],
+  "modules-center": ["hyprland/window"],
   "modules-right": [
     "pulseaudio",
     "network",
     "clock"
   ],
-
   "workspace": {
     "format": " {}",
     "disable-scroll": false
   },
+
   "hyprland/workspaces": {
-    "disable-scroll": true,
+    "active-only": false,
     "all-outputs": true,
     "format": "{icon}",
     "on-click": "activate",
-    "persistent_workspaces": {
-      "1": "",
-      "2": "",
-      "3": ""
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "show-special": false,
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
     },
-    "format-icons": {
+        "format-icons": {
       "active": "  ",
       "persistent": "  ",
       "default": "  "
-    }
+    }  
   },
 
   "custom/power_profile": {
@@ -64,13 +68,9 @@
   },
 
   "clock": {
-    "format":" {:%I:%M %p}",
+    "format": " {:%I:%M %p}",
     "tooltip-format": "<big>{:%a,%d %b}</big>\n<tt><small>{calendar}</small></tt>"
   },
-  "tray": {
-    "icon-size": 21,
-    "spacing": 10
-},
 
   "backlight": {
     "device": "intel_backlight",
@@ -122,15 +122,17 @@
     "on-scroll-down": "pamixer --default-source -d 5",
     "scroll-step": 5
   },
-"hyprland/window": {
+
+  "hyprland/window": {
     "format": "{}",
     "rewrite": {
-        "(.*) — Mozilla Firefox": "🌎 $1",
-        "clutch@clutchrig (.*)": "> $1",
-        "":"Desktop",
+      "(.*) — Mozilla Firefox": "🌎 $1",
+      "clutch@clutchrig (.*)": "> $1",
+      "": "Desktop"
     },
     "separate-outputs": true
-},
+  },
+
   "temperature": {
     "thermal-zone": 1,
     "format": "{temperatureF}°F ",
@@ -139,7 +141,6 @@
   },
 
   "network": {
-    // "interface": "wlp2*", // (Optional) To force the use of this interface
     "format-wifi": "  {signalStrength}%",
     "format-ethernet": "{ipaddr}/{cidr}",
     "tooltip-format": "{essid} - {ifname} via {gwaddr}",
@@ -150,7 +151,7 @@
 
   "bluetooth": {
     "format": " {status}",
-    "format-disabled": "", // an empty format will hide the module
+    "format-disabled": "",
     "format-connected": " {num_connections}",
     "tooltip-format": "{device_alias}",
     "tooltip-format-connected": " {device_enumerate}",
@@ -161,5 +162,5 @@
     "format": " ",
     "on-click": "pkill rofi; rofi",
     "tooltip": false
-  }
+  },
 }

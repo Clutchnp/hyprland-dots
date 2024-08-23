@@ -21,35 +21,29 @@ tooltip {
   border-color: #11111b;
 }
 
+
 #workspaces button {
-  padding: 5px;
-  color: #b4befe;
-  margin-right: 5px;
+	color: #b4befe; /* Lavender for default workspace text */
+	padding: 0px 5px;
 }
 
-#workspaces button.active {
-  color: #a6adc8;
-  color: #94e2d5;
-}
-
-#workspaces button.focused {
-  color: #a6adc8;
-  background: #eba0ac;
-  border-radius: 10px;
+#workspaces button.active,
+#workspaces button.empty.active { 
+	color: #cba6f7; /* Mauve for active workspace and active empty workspace */
 }
 
 #workspaces button.urgent {
-  color: #11111b;
-  background: #a6e3a1;
-  border-radius: 10px;
+	color: #f38ba8; /* Pink for urgent workspace */
+}
+
+#workspaces button.empty {
+	color: #a6adc8; /* Sapphire for empty workspace (when not active) */
 }
 
 #workspaces button:hover {
-  background: #313244;
-  color: #cdd6f4;
-  border-radius: 20px;
+	color: #f5c2e7; /* Pink for hovered workspace text */
+	background-color: #302d41; /* Dark purple for hovered workspace background */
 }
-
 #custom-power_profile,
 #window,
 #clock,
