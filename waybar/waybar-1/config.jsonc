@@ -160,7 +160,7 @@
 
   "custom/launch_wofi": {
     "format": " ",
-    "on-click": "pkill rofi; rofi",
+    "on-click": "pkill rofi; rofi -show drun",
     "tooltip": false
   },
 }
