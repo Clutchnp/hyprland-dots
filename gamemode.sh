@@ -1,6 +1,5 @@
 #!/bin/bash
 # GameMode script stolen from JaKooLit 
-notif="$HOME/.config/swaync/images/bell.png"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 
 
