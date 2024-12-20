@@ -1,0 +1,166 @@
+// ||---------------------------------------------------------------|| //
+// ||---------------------------------------------------------------|| //
+// ||                                                               || //
+// ||                                                               || //
+// ||			██╗    ██╗ █████╗ ██╗   ██╗██████╗  █████╗ ██████╗				|| //
+// ||			██║    ██║██╔══██╗╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗       || //
+// ||			██║ █╗ ██║███████║ ╚████╔╝ ██████╔╝███████║██████╔╝       || //
+// ||			██║███╗██║██╔══██║  ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗       || //
+// ||			╚███╔███╔╝██║  ██║   ██║   ██████╔╝██║  ██║██║  ██║ 			|| //
+// ||	 		 ╚══╝╚══╝ ╚═╝  ╚═╝   ╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ 			|| //
+// ||                                                               || //
+// ||                                             Author: Srinath   || //
+// ||---------------------------------------------------------------|| //
+// ||---------------------------------------------------------------|| //
+
+{
+  "layer": "top",
+  "position": "top",
+  "mod": "dock",
+  "exclusive": true,
+  "passthrough": false,
+  "gtk-layer-shell": true,
+  "height": 40,
+  "modules-left": ["custom/launch_wofi", "hyprland/workspaces", "tray"],
+  "modules-center": ["hyprland/window"],
+  "modules-right": [
+    "pulseaudio",
+    "network",
+    "clock"
+  ],
+  "workspace": {
+    "format": " {}",
+    "disable-scroll": false
+  },
+
+  "hyprland/workspaces": {
+    "active-only": false,
+    "all-outputs": true,
+    "format": "{icon}",
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "show-special": false,
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+    },
+        "format-icons": {
+      "active": "  ",
+      "persistent": "  ",
+      "default": "  "
+    }  
+  },
+
+  "custom/power_profile": {
+    "exec": "asusctl profile -p | sed s:'Active profile is'::",
+    "interval": 30,
+    "format": "󰈐{}",
+    "on-click": "asusctl profile -n; pkill -SIGRTMIN+8 waybar",
+    "signal": 8
+  },
+
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  },
+
+  "clock": {
+    "format": " {:%I:%M %p}",
+    "tooltip-format": "<big>{:%a,%d %b}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": ["󰃞", "󰃟", "󰃠"],
+    "on-scroll-up": "brightnessctl set 1%+",
+    "on-scroll-down": "brightnessctl set 1%-",
+    "min-length": 6
+  },
+
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 20
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "tooltip": false,
+    "format-muted": " Muted",
+    "on-click": "pamixer -t",
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5",
+    "scroll-step": 5,
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    }
+  },
+
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": " Muted",
+    "on-click": "pamixer --default-source -t",
+    "on-scroll-up": "pamixer --default-source -i 5",
+    "on-scroll-down": "pamixer --default-source -d 5",
+    "scroll-step": 5
+  },
+
+  "hyprland/window": {
+    "format": "{}",
+    "rewrite": {
+      "(.*) — Mozilla Firefox": "🌎 $1",
+      "clutch@clutchrig (.*)": "> $1",
+      "": "Desktop"
+    },
+    "separate-outputs": true
+  },
+
+  "temperature": {
+    "thermal-zone": 1,
+    "format": "{temperatureF}°F ",
+    "critical-threshold": 80,
+    "format-critical": "{temperatureC}°C "
+  },
+
+  "network": {
+    "format-wifi": "  {signalStrength}%",
+    "format-ethernet": "{ipaddr}/{cidr}",
+    "tooltip-format": "{essid} - {ifname} via {gwaddr}",
+    "format-linked": "{ifname} (No IP)",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}"
+  },
+
+  "bluetooth": {
+    "format": " {status}",
+    "format-disabled": "",
+    "format-connected": " {num_connections}",
+    "tooltip-format": "{device_alias}",
+    "tooltip-format-connected": " {device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}"
+  },
+
+  "custom/launch_wofi": {
+    "format": " ",
+    "on-click": "pkill rofi; rofi -show drun",
+    "tooltip": false
+  },
+}
