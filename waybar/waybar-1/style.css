@@ -42,7 +42,6 @@ tooltip {
 
 #workspaces button:hover {
 	color: #f5c2e7; /* Pink for hovered workspace text */
-	background-color: #302d41; /* Dark purple for hovered workspace background */
 }
 #custom-power_profile,
 #window,
