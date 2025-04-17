@@ -12,10 +12,20 @@ if [ "$HYPRGAMEMODE" = 1 ] ; then
         keyword general:gaps_in 0;\
         keyword general:gaps_out 0;\
         keyword general:border_size 1;\
-        keyword decoration:rounding 0"
-    notify-send -e -u low -i "$notif" "gamemode enabled. All animations off"
+        keyword decoration:rounding 0;" 
+
+    hyprctl output remove sunshine1 &\
+    ssh oldlappy pkill -f moonlight.AppImage &\
+    pkill -f sunshine.AppImage &\
+    pkill -f sunshine &\
+    notify-send -e -u low -i "$notif" "gamemode enabled. All animations off" &\
     exit
 else
-    notify-send -e -u normal -i "$notif" "gamemode disabled. All animations normal"
+
+    hyprctl  output create headless sunshine1 &\
+    ~/SPACE/build/sunshine.AppImage &\
+    ssh oldlappy 'DISPLAY=:0 QT_QPA_PLATFORM=xcb /home/clutch/Downloads/moonlight.AppImage stream clutchrig Desktop &' &\
+    hyprctl reload &\
+    notify-send -e -u normal -i "$notif" "gamemode disabled. All animations normal" &\
 fi
 hyprctl reload
