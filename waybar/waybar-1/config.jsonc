@@ -16,8 +16,8 @@
 {
   "layer": "top",
   "position": "top",
-  "mod": "dock",
-  "exclusive": true,
+  "mode": "dock",
+  "exclusive": false,
   "passthrough": false,
   "gtk-layer-shell": true,
   "height": 40,
@@ -157,12 +157,15 @@
   },
 
   "network": {
-    "format-ethernet": "{ipaddr}/{cidr}",
-    "tooltip-format": "{essid} - {ifname} via {gwaddr}",
-    "format-linked": "{ifname} (No IP)",
-    "format-disconnected": "Disconnected ⚠",
-    "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}",
-    "family": "ipv4"
+    "family": "ipv4",
+    "format": "{ifname}",
+    "format-wifi": "WiFi {essid} <span color='#aaaaaa'>{signalStrength}%</span>",
+    "format-ethernet": "ETH Connected",
+    "format-disconnected": "DC'D",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "{ifname}",
+    "tooltip-format-disconnected": "Disconnected"
   },
 
   "bluetooth": {
