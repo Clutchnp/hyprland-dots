@@ -21,9 +21,10 @@
   "passthrough": false,
   "gtk-layer-shell": true,
   "height": 40,
-  "modules-left": ["custom/launch_wofi", "hyprland/workspaces", "tray"],
+  "modules-left": ["custom/launch_wofi", "hyprland/workspaces", "tray", "battery"],
   "modules-center": ["hyprland/window"],
   "modules-right": [
+    "custom/power_profile",
     "pulseaudio",
     "network",
     "clock"
@@ -55,7 +56,7 @@
   },
 
   "custom/power_profile": {
-    "exec": "asusctl profile -p | sed s:'Active profile is'::",
+    "exec": "asusctl profile -p | sed -n 2p | sed s:'Active profile is'::",
     "interval": 30,
     "format": "󰈐{}",
     "on-click": "asusctl profile -n; pkill -SIGRTMIN+8 waybar",
